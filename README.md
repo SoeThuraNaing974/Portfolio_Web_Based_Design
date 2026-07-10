@@ -1,5 +1,4 @@
 # Soe Thura Naing — Portfolio
-just testings
 
 A modern, animated portfolio website built with **React + Vite**, **Framer Motion**, and **react-icons**.
 
