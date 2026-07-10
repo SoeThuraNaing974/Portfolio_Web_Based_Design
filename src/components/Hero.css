@@ -294,10 +294,10 @@
   );
 }
 
-/* Gentler ambient light in light theme so the figure stays airy */
+/* Light theme: a single soft neutral shadow — the indigo glow reads as a
+   visible haze box on bright mobile screens */
 :root[data-theme='light'] .portrait-figure img {
-  --portrait-glow: rgba(129, 140, 248, 0.18);
-  --portrait-shadow: rgba(79, 70, 229, 0.16);
+  filter: drop-shadow(0 18px 26px rgba(15, 23, 42, 0.16));
 }
 
 :root[data-theme='light'] .portrait-halo {
