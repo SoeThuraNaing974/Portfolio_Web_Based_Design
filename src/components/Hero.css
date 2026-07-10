@@ -1,0 +1,511 @@
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: var(--nav-height);
+  overflow: hidden;
+}
+
+/* Animated gradient mesh */
+.hero-mesh {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: var(--mesh-opacity);
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  animation: drift 18s ease-in-out infinite alternate;
+  transition: translate 0.6s ease-out;
+}
+
+/* Parallax depth — each blob shifts at a different rate as the cursor moves */
+.blob-1 {
+  width: 480px;
+  height: 480px;
+  top: -120px;
+  left: -100px;
+  background: rgba(56, 189, 248, 0.35);
+  translate: calc(var(--par-x, 0) * -60px) calc(var(--par-y, 0) * -60px);
+}
+
+.blob-2 {
+  width: 420px;
+  height: 420px;
+  bottom: -140px;
+  right: -80px;
+  background: rgba(192, 132, 252, 0.32);
+  animation-delay: -6s;
+  translate: calc(var(--par-x, 0) * 90px) calc(var(--par-y, 0) * 90px);
+}
+
+.blob-3 {
+  width: 340px;
+  height: 340px;
+  top: 40%;
+  left: 55%;
+  background: rgba(129, 140, 248, 0.28);
+  animation-delay: -12s;
+  translate: calc(var(--par-x, 0) * 40px) calc(var(--par-y, 0) * -40px);
+}
+
+@keyframes drift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(60px, -50px) scale(1.15);
+  }
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  background: var(--card);
+  backdrop-filter: blur(10px);
+  padding: 8px 18px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+}
+
+.hero-text h1 {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+
+.grad-name {
+  background: var(--gradient);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 6s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.typing-line {
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  font-weight: 700;
+  color: var(--text-muted);
+  min-height: 1.4em;
+  margin-bottom: 22px;
+}
+
+.typed {
+  color: var(--accent-2);
+}
+
+.caret {
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  margin-left: 4px;
+  vertical-align: text-bottom;
+  background: var(--accent-2);
+  animation: blink 0.9s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.hero-statement {
+  max-width: 540px;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: 34px;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 34px;
+}
+
+.hero-socials {
+  display: flex;
+  gap: 12px;
+}
+
+.hero-socials a {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  backdrop-filter: blur(10px);
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  transition: transform var(--transition), color var(--transition),
+    border-color var(--transition), box-shadow var(--transition);
+}
+
+.hero-socials a:hover {
+  transform: translateY(-4px);
+  color: var(--accent-2);
+  border-color: var(--accent-2);
+  box-shadow: 0 10px 26px -10px rgba(129, 140, 248, 0.55);
+}
+
+/* ============ 3D cube visual ============ */
+.hero-visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 380px;
+}
+
+.orbit {
+  position: absolute;
+  border: 1px dashed color-mix(in srgb, var(--accent-2) 35%, transparent);
+  border-radius: 50%;
+}
+
+.orbit-1 {
+  width: 330px;
+  height: 330px;
+  animation: spin 26s linear infinite;
+}
+
+.orbit-2 {
+  width: 430px;
+  height: 430px;
+  animation: spin 40s linear infinite reverse;
+}
+
+.orbit::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gradient);
+  box-shadow: 0 0 14px rgba(129, 140, 248, 0.9);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cube-tilt {
+  perspective: 1100px;
+  transform-style: preserve-3d;
+  transition: transform 0.35s ease-out;
+  will-change: transform;
+}
+
+/* ============ 3D portrait ============ */
+.portrait-stage {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: float 5.5s ease-in-out infinite;
+}
+
+/* Ambient light halo breathing behind the figure */
+.portrait-halo {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(129, 140, 248, 0.55) 0%,
+    rgba(56, 189, 248, 0.28) 45%,
+    transparent 72%
+  );
+  filter: blur(52px);
+  animation: halo-breathe 7s ease-in-out infinite;
+}
+
+@keyframes halo-breathe {
+  0%, 100% {
+    opacity: 0.75;
+    scale: 1;
+  }
+  50% {
+    opacity: 1;
+    scale: 1.12;
+  }
+}
+
+/* The figure itself — no frame, dissolves into the page at the bottom */
+.portrait-figure {
+  position: relative;
+  transform: translateZ(35px);
+}
+
+.portrait-figure img {
+  display: block;
+  height: 400px;
+  filter: drop-shadow(0 0 26px var(--portrait-glow, rgba(129, 140, 248, 0.32)))
+    drop-shadow(0 30px 45px var(--portrait-shadow, rgba(4, 8, 20, 0.5)));
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 74%,
+    rgba(0, 0, 0, 0.5) 88%,
+    transparent 99%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 74%,
+    rgba(0, 0, 0, 0.5) 88%,
+    transparent 99%
+  );
+}
+
+/* Gentler ambient light in light theme so the figure stays airy */
+:root[data-theme='light'] .portrait-figure img {
+  --portrait-glow: rgba(129, 140, 248, 0.18);
+  --portrait-shadow: rgba(79, 70, 229, 0.16);
+}
+
+:root[data-theme='light'] .portrait-halo {
+  background: radial-gradient(
+    circle,
+    rgba(129, 140, 248, 0.3) 0%,
+    rgba(56, 189, 248, 0.15) 45%,
+    transparent 72%
+  );
+}
+
+/* Light pooling on the ground beneath */
+.portrait-ground {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    rgba(129, 140, 248, 0.4),
+    transparent 70%
+  );
+  filter: blur(16px);
+}
+
+.cube-stage {
+  perspective: 900px;
+  animation: float 5.5s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+/* Mini cube — its own floating element, anchored to the visual's corner,
+   clearly separated from the photo */
+.cube-stage.mini {
+  position: absolute;
+  left: -8%;
+  top: 28%;
+  z-index: 2;
+  animation: float 4s ease-in-out infinite reverse;
+}
+
+.cube-stage.mini .cube {
+  --size: 100px;
+}
+
+.cube-stage.mini .cube-face {
+  font-size: 1.15rem;
+  border-radius: 12px;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-22px);
+  }
+}
+
+.cube {
+  --size: 150px;
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  transform-style: preserve-3d;
+  animation: cube-rotate 16s linear infinite;
+}
+
+@keyframes cube-rotate {
+  from {
+    transform: rotateX(-18deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(-18deg) rotateY(360deg);
+  }
+}
+
+.cube-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(
+    135deg,
+    rgba(56, 189, 248, 0.28),
+    rgba(129, 140, 248, 0.34),
+    rgba(192, 132, 252, 0.28)
+  );
+  border: 1px solid color-mix(in srgb, var(--accent-2) 55%, transparent);
+  border-radius: 14px;
+  backdrop-filter: blur(6px);
+  box-shadow: inset 0 0 40px rgba(129, 140, 248, 0.25);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
+}
+
+:root[data-theme='light'] .cube-face {
+  color: #312e81;
+  text-shadow: none;
+}
+
+.face-1 { transform: translateZ(calc(var(--size) / 2)); }
+.face-2 { transform: rotateY(180deg) translateZ(calc(var(--size) / 2)); }
+.face-3 { transform: rotateY(90deg) translateZ(calc(var(--size) / 2)); }
+.face-4 { transform: rotateY(-90deg) translateZ(calc(var(--size) / 2)); }
+.face-5 { transform: rotateX(90deg) translateZ(calc(var(--size) / 2)); }
+.face-6 { transform: rotateX(-90deg) translateZ(calc(var(--size) / 2)); }
+
+/* Scroll hint */
+.scroll-hint {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  animation: bounce 2.2s ease-in-out infinite;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.scroll-hint:hover {
+  color: var(--accent-2);
+  border-color: var(--accent-2);
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 10px);
+  }
+}
+
+@media (max-width: 920px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .hero-statement {
+    margin-inline: auto;
+  }
+
+  .hero-cta,
+  .hero-socials {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    min-height: 320px;
+    order: -1;
+    margin-top: 20px;
+  }
+
+  .portrait-figure img {
+    height: 300px;
+  }
+
+  .portrait-halo {
+    width: 220px;
+    height: 220px;
+    filter: blur(42px);
+  }
+
+  .portrait-ground {
+    width: 190px;
+    height: 36px;
+  }
+
+  .cube-stage.mini {
+    left: 4%;
+    top: 28%;
+  }
+
+  .cube-stage.mini .cube {
+    --size: 64px;
+  }
+
+  .cube-stage.mini .cube-face {
+    font-size: 0.85rem;
+    border-radius: 8px;
+  }
+
+  .orbit-1 {
+    width: 250px;
+    height: 250px;
+  }
+
+  .orbit-2 {
+    width: 330px;
+    height: 330px;
+  }
+}

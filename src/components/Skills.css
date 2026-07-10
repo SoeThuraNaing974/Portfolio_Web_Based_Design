@@ -1,0 +1,172 @@
+#skills {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(180deg, transparent, var(--bg-soft) 30%, var(--bg-soft) 70%, transparent);
+}
+
+/* Flexible grid — cards pair up in balanced rows and resize with the viewport */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.skill-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 28px;
+  overflow: hidden;
+}
+
+/* Gradient accent line across the top of each card */
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient);
+  opacity: 0.55;
+  transition: opacity var(--transition);
+}
+
+.skill-card:hover::before {
+  opacity: 1;
+}
+
+.skill-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Soft skills card spans the full row */
+.skill-card.wide {
+  grid-column: 1 / -1;
+}
+
+.skill-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.skill-card-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  font-size: 1.1rem;
+  color: #fff;
+  background: var(--gradient);
+  box-shadow: 0 6px 16px -6px rgba(129, 140, 248, 0.6);
+  transition: transform var(--transition);
+}
+
+.skill-card:hover .skill-card-icon {
+  transform: scale(1.1) rotate(-8deg);
+}
+
+.skill-bar-row {
+  margin-bottom: 18px;
+}
+
+.skill-bar-row:last-child {
+  margin-bottom: 0;
+}
+
+.skill-bar-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.skill-pct {
+  color: var(--accent-2);
+  font-family: var(--font-display);
+}
+
+.skill-track {
+  height: 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text-muted) 18%, transparent);
+  overflow: hidden;
+}
+
+.skill-fill {
+  position: relative;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--gradient);
+  box-shadow: 0 0 12px rgba(129, 140, 248, 0.6);
+  overflow: hidden;
+}
+
+/* Moving shimmer inside each filled bar */
+.skill-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 2.6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  60%, 100% {
+    transform: translateX(100%);
+  }
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 12px;
+  flex: 1;
+}
+
+.skill-tag {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid color-mix(in srgb, var(--accent-1) 40%, transparent);
+  background: color-mix(in srgb, var(--accent-1) 10%, transparent);
+  color: var(--text);
+  transition: transform var(--transition), box-shadow var(--transition),
+    background var(--transition), color var(--transition),
+    border-color var(--transition);
+  cursor: default;
+}
+
+.skill-tag.soft {
+  border-color: color-mix(in srgb, var(--accent-3) 40%, transparent);
+  background: color-mix(in srgb, var(--accent-3) 10%, transparent);
+}
+
+.skill-tag:hover {
+  transform: translateY(-4px) scale(1.06);
+  background: var(--gradient);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 10px 24px -8px rgba(129, 140, 248, 0.7);
+}
+
+@media (max-width: 760px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
