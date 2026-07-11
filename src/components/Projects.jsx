@@ -13,6 +13,7 @@ import {
   FiExternalLink,
 } from 'react-icons/fi'
 import showroomPreview from '../assets/showroom-preview.jpg'
+import travellingPreview from '../assets/travelling-preview.jpg'
 import './Projects.css'
 
 // Each repo name below must match the repository that holds that project's code.
@@ -58,8 +59,9 @@ const PROJECTS = [
     description:
       'A full-stack travel guide with a React.js frontend and Express.js backend helping users discover destinations.',
     tech: ['React.js', 'Express.js', 'Bootstrap'],
-    source: `${GITHUB}/travelling-guide-system`,
-    demo: '#',
+    source: `${GITHUB}/Travelling-Guide-System`,
+    demo: 'https://travelling-guide-system-37kh.vercel.app',
+    preview: travellingPreview,
   },
   {
     icon: <FiMessageCircle />,
