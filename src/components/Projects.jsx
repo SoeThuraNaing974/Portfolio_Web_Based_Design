@@ -24,7 +24,7 @@ const PROJECTS = [
     year: '2022 – 2023',
     description:
       'A showroom management system combining C++ program logic with a clean, responsive web interface.',
-    tech: ['C++', 'HTML', 'CSS'],
+    tech: ['C++', 'HTML', 'CSS', 'JavaScript'],
     source: `${GITHUB}/showroom-management-system`,
   },
   {
