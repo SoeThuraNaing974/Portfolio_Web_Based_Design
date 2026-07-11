@@ -38,6 +38,53 @@
   opacity: 1;
 }
 
+/* Live-site preview banner (full bleed to the card edges) */
+.project-preview {
+  position: relative;
+  display: block;
+  margin: -28px -28px 22px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.project-preview img {
+  display: block;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.5s ease;
+}
+
+.project-preview:hover img {
+  transform: scale(1.06);
+}
+
+.preview-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  background: color-mix(in srgb, var(--accent-2) 30%, rgba(10, 12, 24, 0.55));
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.preview-overlay svg {
+  font-size: 1.05rem;
+}
+
+.project-preview:hover .preview-overlay,
+.project-preview:focus-visible .preview-overlay {
+  opacity: 1;
+}
+
 .project-top {
   display: flex;
   align-items: center;
@@ -116,9 +163,45 @@
 }
 
 .project-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin-top: auto;
   padding-top: 16px;
   border-top: 1px solid var(--border);
+}
+
+.view-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  padding: 9px 20px;
+  border-radius: 999px;
+  background: var(--gradient);
+  background-size: 160% 160%;
+  background-position: 0% 50%;
+  box-shadow: 0 8px 20px -8px rgba(129, 140, 248, 0.7);
+  transition: background-position 0.4s ease, transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.view-icon {
+  font-size: 1rem;
+  transition: transform var(--transition);
+}
+
+.view-link:hover {
+  background-position: 100% 50%;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px rgba(129, 140, 248, 0.9);
+}
+
+.view-link:hover .view-icon {
+  transform: translate(2px, -2px) scale(1.1);
 }
 
 .source-link {

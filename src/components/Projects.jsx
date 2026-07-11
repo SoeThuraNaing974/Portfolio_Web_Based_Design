@@ -10,12 +10,14 @@ import {
   FiShoppingCart,
   FiGithub,
   FiArrowUpRight,
+  FiExternalLink,
 } from 'react-icons/fi'
+import showroomPreview from '../assets/showroom-preview.jpg'
 import './Projects.css'
 
-// Replace "yourusername" with your real GitHub username,
-// and each repo name with the repository that holds that project's code.
-const GITHUB = 'https://github.com/yourusername'
+// Each repo name below must match the repository that holds that project's code.
+// Set each project's `demo` to its live website URL to activate the View button.
+const GITHUB = 'https://github.com/SoeThuraNaing974'
 
 const PROJECTS = [
   {
@@ -25,7 +27,9 @@ const PROJECTS = [
     description:
       'A showroom management system combining C++ program logic with a clean, responsive web interface.',
     tech: ['C++', 'HTML', 'CSS', 'JavaScript'],
-    source: `${GITHUB}/showroom-management-system`,
+    source: `${GITHUB}/Showroom-Management-System`,
+    demo: 'https://showroom-management-system-vampire6.vercel.app',
+    preview: showroomPreview,
   },
   {
     icon: <FiUsers />,
@@ -35,6 +39,7 @@ const PROJECTS = [
       'A student records management app built on Node.js with a simple, functional web interface.',
     tech: ['Node.js', 'HTML', 'CSS'],
     source: `${GITHUB}/student-management-system`,
+    demo: '#',
   },
   {
     icon: <FiBriefcase />,
@@ -44,6 +49,7 @@ const PROJECTS = [
       'A web platform connecting job seekers with employers, built on JavaEE with a Bootstrap-styled UI.',
     tech: ['JavaEE', 'HTML', 'CSS', 'Bootstrap'],
     source: `${GITHUB}/job-seeking-system`,
+    demo: '#',
   },
   {
     icon: <FiMap />,
@@ -53,6 +59,7 @@ const PROJECTS = [
       'A full-stack travel guide with a React.js frontend and Express.js backend helping users discover destinations.',
     tech: ['React.js', 'Express.js', 'Bootstrap'],
     source: `${GITHUB}/travelling-guide-system`,
+    demo: '#',
   },
   {
     icon: <FiMessageCircle />,
@@ -62,6 +69,7 @@ const PROJECTS = [
       'A messaging application built with PHP and Laravel, handling users and conversations.',
     tech: ['PHP', 'Laravel', 'HTML', 'CSS'],
     source: `${GITHUB}/chatting-system`,
+    demo: '#',
   },
   {
     icon: <FiCoffee />,
@@ -71,6 +79,7 @@ const PROJECTS = [
       'A management tool for restaurant orders and operations, powered by a C# backend.',
     tech: ['C#', 'HTML', 'CSS'],
     source: `${GITHUB}/restaurant-management-system`,
+    demo: '#',
   },
   {
     icon: <FiShoppingCart />,
@@ -80,6 +89,7 @@ const PROJECTS = [
       'A marketplace platform powered by Python and Flask, managing products and orders with a Bootstrap UI.',
     tech: ['Python', 'Flask', 'HTML', 'CSS', 'Bootstrap'],
     source: `${GITHUB}/marketplace-management-system`,
+    demo: '#',
   },
 ]
 
@@ -151,6 +161,25 @@ export default function Projects() {
             >
               <TiltCard className="project-card glass">
                 <div className="project-shine" aria-hidden="true" />
+                {project.preview && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="project-preview"
+                    aria-label={`Open ${project.title} live site`}
+                  >
+                    <img
+                      src={project.preview}
+                      alt={`${project.title} website preview`}
+                      loading="lazy"
+                    />
+                    <span className="preview-overlay">
+                      <FiExternalLink />
+                      <span>Visit site</span>
+                    </span>
+                  </a>
+                )}
                 <div className="project-top">
                   <span className="project-icon">{project.icon}</span>
                   <span className="project-year">{project.year}</span>
@@ -165,6 +194,15 @@ export default function Projects() {
                   ))}
                 </div>
                 <div className="project-footer">
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="view-link"
+                  >
+                    <FiExternalLink className="view-icon" />
+                    <span>View</span>
+                  </a>
                   <a
                     href={project.source}
                     target="_blank"
