@@ -1,0 +1,260 @@
+#milestones {
+  position: relative;
+  z-index: 2;
+}
+
+.milestones-list {
+  display: grid;
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.milestone-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  padding: 32px 36px;
+}
+
+.milestone-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.milestone-card:hover {
+  transform: translateY(-4px);
+}
+
+.milestone-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.milestone-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #4a3200;
+  padding: 7px 18px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: linear-gradient(120deg, #f9cf4e, #ffe58a 45%, #f2a93b);
+  border: 1px solid rgba(255, 226, 130, 0.9);
+  animation: badge-glow 2.4s ease-in-out infinite;
+}
+
+.milestone-badge svg {
+  font-size: 1rem;
+}
+
+@keyframes badge-glow {
+  0%,
+  100% {
+    box-shadow: 0 4px 16px -4px rgba(242, 169, 59, 0.55);
+  }
+  50% {
+    box-shadow: 0 6px 26px -2px rgba(249, 207, 78, 0.95);
+  }
+}
+
+.badge-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent,
+    rgba(255, 255, 255, 0.75) 50%,
+    transparent
+  );
+  transform: skewX(-20deg) translateX(-180%);
+  animation: badge-shine 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes badge-shine {
+  0%,
+  55% {
+    transform: skewX(-20deg) translateX(-180%);
+  }
+  85%,
+  100% {
+    transform: skewX(-20deg) translateX(320%);
+  }
+}
+
+.milestone-year {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.milestone-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.milestone-organizer {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent-2);
+  margin-bottom: 10px;
+}
+
+.milestone-card p {
+  font-size: 0.94rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.milestone-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.milestone-photo {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  width: 280px;
+  align-self: center;
+  padding: 4px;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: zoom-in;
+  transform: rotate(2deg);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent-2) 55%, transparent),
+    transparent 40%,
+    transparent 60%,
+    color-mix(in srgb, var(--accent-2) 55%, transparent)
+  );
+  box-shadow: 0 12px 32px -14px rgba(0, 0, 0, 0.45);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.milestone-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  transition: transform 0.45s ease;
+}
+
+.milestone-photo:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 44px -14px rgba(129, 140, 248, 0.55);
+}
+
+.milestone-photo:hover img {
+  transform: scale(1.03);
+}
+
+.milestone-photo-hint {
+  position: absolute;
+  inset: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(10, 12, 24, 0.45);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+}
+
+.milestone-photo-hint svg {
+  font-size: 1.1rem;
+}
+
+.milestone-photo:hover .milestone-photo-hint,
+.milestone-photo:focus-visible .milestone-photo-hint {
+  opacity: 1;
+}
+
+/* Lightbox */
+.lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4vmin;
+  background: rgba(8, 10, 20, 0.82);
+  backdrop-filter: blur(8px);
+  cursor: zoom-out;
+}
+
+.lightbox-img {
+  max-width: min(1100px, 92vw);
+  max-height: 86vh;
+  border-radius: 14px;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.8);
+  cursor: default;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  font-size: 1.3rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: rotate(90deg);
+}
+
+@media (max-width: 820px) {
+  .milestone-card {
+    flex-wrap: wrap;
+  }
+
+  .milestone-photo {
+    width: 100%;
+    max-width: 340px;
+    margin: 8px auto 0;
+    transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 560px) {
+  .milestone-card {
+    flex-direction: column;
+  }
+}
