@@ -28,7 +28,7 @@ const PROJECTS = [
       'A showroom management system combining C++ program logic with a clean, responsive web interface.',
     tech: ['C++', 'HTML', 'CSS', 'JavaScript'],
     source: `${GITHUB}/Showroom-Management-System`,
-    demo: 'https://showroom-management-system-vampire6.vercel.app',
+    demo: 'https://showroom-management-system-vampire6.vercel.app/index.html',
     preview: showroomPreview,
   },
   {
